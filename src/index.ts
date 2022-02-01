@@ -1,5 +1,6 @@
 // Colyseus + Express
 import { Server } from "@colyseus/core";
+import { User, FriendRequest, verifyToken } from "@colyseus/social";
 import { uWebSocketsTransport } from "@colyseus/uwebsockets-transport";
 import { MyRoom } from "./MyRoom";
 
