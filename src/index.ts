@@ -6,6 +6,7 @@ import { createServer } from "http";
 import { Server } from "@colyseus/core";
 import { WebSocketTransport } from "@colyseus/ws-transport"
 import { MyRoom } from "./MyRoom";
+import { EventHandler } from "./handlers/event.handler";
 
 const app = express();
 const server = createServer(app); // create the http server manually
@@ -27,10 +28,8 @@ const gameServer = new Server({
 
 gameServer.listen(port);
 
-app.post("/checkToken", (req, res) => {
-  console.log(req.body);
-  res.json({msg: 'This is CORS-enabled for all origins!'});
-});
+const eventHandler = new EventHandler();
+eventHandler.setupEvents(app);
 
 // Define "chat" room
 gameServer.define("myRoom", MyRoom)

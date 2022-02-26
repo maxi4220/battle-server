@@ -30,6 +30,7 @@
     "colyseus": "^0.14.23",
     "cors": "^2.8.5",
     "express-jwt": "^6.1.0",
+    "rxjs": "^7.5.4",
     "serve-index": "^1.8.0",
     "superagent": "^3.8.1"
   }

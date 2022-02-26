@@ -1,6 +1,9 @@
 export class FacebookUser {
     authResponse: AuthResponse
     status: string
+    constructor(){
+        this.authResponse = new AuthResponse();
+    }
 }
 export class AuthResponse {
     accessToken: string
@@ -8,4 +11,5 @@ export class AuthResponse {
     expiresIn: number
     signedRequest: string
     userID: string
+    name: string
 }
