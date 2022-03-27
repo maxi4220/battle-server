@@ -1,4 +1,5 @@
 // Colyseus + Express
+require('dotenv').config({path: __dirname + '/.env'})
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -37,3 +38,4 @@ gameServer.define("myRoom", MyRoom)
   .on("dispose", (room) => console.log("room disposed:", room.roomId))
   .on("join", (room, client) => console.log(client.id, "joined", room.roomId))
   .on("leave", (room, client) => console.log(client.id, "left", room.roomId));
+
