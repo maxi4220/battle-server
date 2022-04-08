@@ -48,12 +48,9 @@ export class AuthData {
       
       if ( login.count > 0 ) {
         return await cnn.query(`update logins set login_at=?, login_count=?`, 
-        //CONTINUE WITH DATE ISSUE ********************************************************************************************************************************************************************************
-        [ new Date().toISOString().slice(0, 19).replace('T', ' '), login[0].login_count + 1 ])
+        [ Utilities.DateNow(), login[0].login_count + 1 ])
       } else {
-        return await cnn.query(`insert into logins 
-          (user_id) values(?)`, 
-          [ userID ])
+        return await cnn.query(`insert into logins (user_id) values(?)`, [ userID ])
       }
   }
 
