@@ -1,3 +1,4 @@
+import {v4 as uuidv4} from 'uuid';
 import { Result } from "odbc";
 import { of } from "rxjs";
 import { FacebookUser } from "../models/facebookUser";
@@ -15,8 +16,8 @@ export class AuthData {
 
     const sqlData = new SqlData();
     const cnn = await sqlData.connect()
-    return await cnn.query(`insert into users (name, fb_user_id, access_token, expires_in) values(?,?,?,?)`, 
-      [ fbUser.authResponse.name, fbUser.authResponse.userID, fbUser.authResponse.accessToken,fbUser.authResponse.expiresIn])
+    return await cnn.query(`insert into users (id, name, fb_user_id, access_token, expires_in) values(?,?,?,?,?)`, 
+      [ uuidv4(), fbUser.authResponse.name, fbUser.authResponse.userID, fbUser.authResponse.accessToken,fbUser.authResponse.expiresIn])
       .then(async ()=>{
         return await this.getUser(fbUser.authResponse.userID)
       })
@@ -50,7 +51,7 @@ export class AuthData {
         return await cnn.query(`update logins set login_at=?, login_count=?`, 
         [ Utilities.DateNow(), login[0].login_count + 1 ])
       } else {
-        return await cnn.query(`insert into logins (user_id) values(?)`, [ userID ])
+        return await cnn.query(`insert into logins (id, user_id) values(?,?)`, [ uuidv4(), userID ])
       }
   }
 

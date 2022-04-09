@@ -47,7 +47,7 @@ export class AuthRepository {
           .then((user: any)=>{
             // register login into the DB
             if ( user.count === 1) {
-              this.authData.registerLogin( user.id, fbUser.authResponse.userID )
+              this.authData.registerLogin( user[0].id, fbUser.authResponse.userID )
               .then((login)=>{
                 if ( login.count === 0 ) {
                   return false
