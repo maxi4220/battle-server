@@ -1,12 +1,16 @@
-import odbc, { Connection } from "odbc";
+import mysql from "mysql";
+import sql_config from "../db.config"
 
 export class SqlData {
-  cnn: Connection;
-  private config: string = "DSN=" + process.env.sql_dsn;
-
+  cnn: mysql.Connection;
   constructor(){ }
 
-  async connect() {
-    return this.cnn = await odbc.connect(this.config);
+  connect() {
+    return this.cnn = mysql.createConnection({
+      host: sql_config.HOST,
+      user: sql_config.USER,
+      password: sql_config.PASSWORD,
+      database: sql_config.DB
+    });;
   }
 }
