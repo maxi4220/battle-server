@@ -1,3 +1,6 @@
+import { AuthRepository } from "../repositories/auth.repository";
+import * as core from 'express-serve-static-core';
 export declare class EventHandler {
-    static setupEvents(app: any): void;
+    authRepository: AuthRepository;
+    setupEvents(app: core.Express): void;
 }

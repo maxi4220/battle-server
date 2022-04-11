@@ -1,6 +1,7 @@
 export declare class FacebookUser {
     authResponse: AuthResponse;
     status: string;
+    constructor();
 }
 export declare class AuthResponse {
     accessToken: string;
@@ -8,4 +9,5 @@ export declare class AuthResponse {
     expiresIn: number;
     signedRequest: string;
     userID: string;
+    name: string;
 }
