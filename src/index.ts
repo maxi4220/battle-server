@@ -13,7 +13,7 @@ const app = express();
 const server = createServer(app); // create the http server manually
 
 app.use(cors({
-  origin: "https://localhost:8080",
+  origin: "*",
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }))
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,3 +39,4 @@ gameServer.define("myRoom", MyRoom)
   .on("join", (room, client) => console.log(client.id, "joined", room.roomId))
   .on("leave", (room, client) => console.log(client.id, "left", room.roomId));
 
+console.log("Server started at port: "+port.toString())
