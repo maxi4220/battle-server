@@ -20,7 +20,7 @@ try{
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
-  const port = Number(process.env.WEB_PORT) || 3000;
+  const port = Number(process.env.PORT) || 3000;
 
   const gameServer = new Server({
     transport: new WebSocketTransport({
@@ -28,9 +28,7 @@ try{
     })
   });
 
-  gameServer.listen(port, "0.0.0.0").then(()=>{
-    console.log("Server started at port: "+port.toString())
-  });
+  gameServer.listen(port);
 
   const eventHandler = new EventHandler();
   eventHandler.setupEvents(app);
@@ -42,7 +40,7 @@ try{
     .on("join", (room, client) => console.log(client.id, "joined", room.roomId))
     .on("leave", (room, client) => console.log(client.id, "left", room.roomId));
 
-  
+  console.log("Server started at port: "+port.toString())
 }
 catch(err) {
   console.log("Error")
