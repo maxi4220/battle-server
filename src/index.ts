@@ -28,7 +28,9 @@ try{
     })
   });
 
-  gameServer.listen(port);
+  gameServer.listen(port, "0.0.0.0").then(()=>{
+    console.log("Server started at port: "+port.toString())
+  });
 
   const eventHandler = new EventHandler();
   eventHandler.setupEvents(app);
@@ -40,7 +42,7 @@ try{
     .on("join", (room, client) => console.log(client.id, "joined", room.roomId))
     .on("leave", (room, client) => console.log(client.id, "left", room.roomId));
 
-  console.log("Server started at port: "+port.toString())
+  
 }
 catch(err) {
   console.log("Error")
